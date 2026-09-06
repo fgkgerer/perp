@@ -1,0 +1,289 @@
+openapi: 3.0.0
+info:
+  title: JOJO Exchange API
+  description: |
+    Backend API for JOJO Decentralized Perpetual Contract Trading.
+    This documentation is organized based on network traffic analysis (F12) from app.jojo.exchange and official documentation.
+  version: 2.0.0
+servers:
+  - url: https://jojo-api-mainnet-0da296028aeb.herokuapp.com/v2
+    description: Mainnet API (Heroku - used by frontend)
+  - url: https://api.base-mainnet.jojo.exchange/v1
+    description: Official API Endpoint
+
+paths:
+  /time:
+    get:
+      tags: [Public]
+      summary: Check Server Time
+      description: Test connectivity to the Rest API and get the current server time.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  serverTime:
+                    type: integer
+                    format: int64
+                    example: 1655815543336
+
+  /exchangeInfo:
+    get:
+      tags: [Public]
+      summary: Exchange Information
+      description: Current exchange trading rules and markets information.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExchangeInfo'
+
+  /appVersion:
+    get:
+      tags: [Internal]
+      summary: Get App Version
+      description: Internal endpoint used by the frontend to check the application version.
+      responses:
+        '200':
+          description: OK
+
+  /validateIP:
+    get:
+      tags: [Internal]
+      summary: Validate IP
+      description: Internal endpoint to check if the user's IP is restricted based on geolocation.
+      responses:
+        '200':
+          description: OK
+
+  /announcementAgent:
+    get:
+      tags: [Internal]
+      summary: Get Announcements
+      description: Internal endpoint to fetch system announcements.
+      responses:
+        '200':
+          description: OK
+
+  /depth:
+    get:
+      tags: [Market]
+      summary: Order Book
+      parameters:
+        - name: marketId
+          in: query
+          required: true
+          schema:
+            type: string
+          example: "ethusdc"
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+      responses:
+        '200':
+          description: OK
+
+  /trades:
+    get:
+      tags: [Market]
+      summary: Recent Trades
+      parameters:
+        - name: marketId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+
+  /klines:
+    get:
+      tags: [Market]
+      summary: Get Market Klines
+      parameters:
+        - name: marketId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: interval
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [1m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d, 1w, 1M]
+      responses:
+        '200':
+          description: OK
+
+  /fundingRates:
+    get:
+      tags: [Market]
+      summary: Get Market Funding Rates
+      parameters:
+        - name: marketId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+
+  /riskyAccounts:
+    get:
+      tags: [Public]
+      summary: Get High-Risk Account Positions
+      description: Returns position information of accounts with risk level higher than 80%.
+      responses:
+        '200':
+          description: OK
+
+  /account:
+    get:
+      tags: [Account]
+      summary: Get Account Information
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: account
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+    post:
+      tags: [Account]
+      summary: Register Account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                account:
+                  type: string
+      responses:
+        '200':
+          description: OK
+
+  /order/build:
+    post:
+      tags: [Order]
+      summary: Build Unsigned Order
+      description: Returns a JOJO unsigned order data structure based on the incoming order parameter.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                marketId: {type: string}
+                side: {type: string, enum: [BUY, SELL]}
+                orderType: {type: string, enum: [LIMIT, MARKET]}
+                amount: {type: string}
+                price: {type: string}
+                timeInForce: {type: string}
+      responses:
+        '200':
+          description: OK
+
+  /order:
+    post:
+      tags: [Order]
+      summary: New Order
+      description: Create a new order with signature.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                marketId: {type: string}
+                side: {type: string}
+                orderType: {type: string}
+                amount: {type: string}
+                price: {type: string}
+                timeInForce: {type: string}
+                orderSignature: {type: string}
+                info: {type: string}
+                gasFeeQuotation: {type: string}
+      responses:
+        '200':
+          description: OK
+    delete:
+      tags: [Order]
+      summary: Cancel Order
+      parameters:
+        - name: marketId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: orderId
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No Content
+
+  /historyOrders:
+    get:
+      tags: [Order]
+      summary: Get History Orders
+      parameters:
+        - name: account
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: marketId
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+  schemas:
+    ExchangeInfo:
+      type: object
+      properties:
+        assets:
+          type: array
+          items:
+            type: object
+            properties:
+              fullName: {type: string}
+              name: {type: string}
+        markets:
+          type: array
+          items:
+            type: object
+            properties:
+              symbol: {type: string}
+              pair: {type: string}
+              status: {type: string}
+              baseAssetName: {type: string}
+              quoteAssetName: {type: string}

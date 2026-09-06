@@ -1,0 +1,170 @@
+@config "../tailwind.config.js";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@reference "tailwindcss";
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  @apply bg-page text-foreground antialiased;
+}
+
+.panel {
+  @apply border border-panelBorder bg-panel;
+}
+
+.panel-header {
+  @apply border-b border-panelBorder px-4 py-3 text-sm font-semibold text-foreground;
+}
+
+/* 表单与输入：提高边框与占位符对比度 */
+.input-field {
+  @apply rounded-lg border border-panelBorder bg-elevated px-3 py-2 text-sm text-foreground placeholder:text-faint focus:border-accent/50 focus:ring-1 focus:ring-accent;
+}
+
+button,
+a,
+input,
+select {
+  transition: border-color 160ms ease, background-color 160ms ease,
+    color 160ms ease, opacity 160ms ease, box-shadow 160ms ease;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid rgba(22, 216, 212, 0.7);
+  outline-offset: 2px;
+}
+
+.terminal-scrollbar {
+  scrollbar-color: #273342 transparent;
+  scrollbar-width: thin;
+}
+
+.terminal-scrollbar::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.terminal-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: #273342;
+}
+
+::selection {
+  background: rgba(22, 216, 212, 0.24);
+  color: #ffffff;
+}
+
+@keyframes market-tab-in {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes book-flash-buy {
+  0% {
+    background-color: rgba(46, 203, 139, 0.2);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes book-flash-sell {
+  0% {
+    background-color: rgba(240, 91, 120, 0.2);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes price-tick {
+  0% {
+    opacity: 0.45;
+    transform: translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.market-tab-panel {
+  animation: market-tab-in 180ms ease-out both;
+}
+
+.book-row-bid,
+.trade-row-buy {
+  animation: book-flash-buy 520ms ease-out both;
+}
+
+.book-row-ask,
+.trade-row-sell {
+  animation: book-flash-sell 520ms ease-out both;
+}
+
+.last-price-tick {
+  animation: price-tick 240ms ease-out both;
+}
+
+.book-ratio-buy {
+  clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+}
+
+.order-size-range {
+  appearance: none;
+  height: 4px;
+  border-radius: 999px;
+  outline: none;
+}
+
+.order-size-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #c9d1d4;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 0 0 1px #20282c;
+  cursor: pointer;
+}
+
+.order-size-range::-moz-range-thumb {
+  width: 11px;
+  height: 11px;
+  border: 2px solid #c9d1d4;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 0 0 1px #20282c;
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .market-tab-panel,
+  .book-row-bid,
+  .book-row-ask,
+  .trade-row-buy,
+  .trade-row-sell,
+  .last-price-tick {
+    animation: none;
+  }
+}

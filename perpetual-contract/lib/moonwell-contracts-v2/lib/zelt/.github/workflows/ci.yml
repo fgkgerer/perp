@@ -1,0 +1,30 @@
+name: Build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build_scripts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+
+      - name: Clean Contracts
+        run: forge clean
+
+      - name: Compile Contracts
+        run: forge build
+
+      - name: Unit Test Contracts
+        run: forge test -vvv

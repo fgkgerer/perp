@@ -1,0 +1,16 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "installCommand": "npm install",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "env": {
+    "NEXT_PUBLIC_METANODE_API_URL": "https://perpetual-api.zood.work",
+    "NEXT_PUBLIC_DEALER_ADDRESS": "0x62e738C8e807c5D8224044207ff7623F9e080Cd7",
+    "NEXT_PUBLIC_USDC_ADDRESS": "0xf3B23a25F2ef5cD41E35eC6B48F97397d0d85dc0",
+    "NEXT_PUBLIC_USDC_TREASURY_ADDRESS": "0x149F9754dB43Dda309a0B52a802D23F52e04F4F9",
+    "NEXT_PUBLIC_SEPOLIA_RPC_URL": "https://ethereum-sepolia.publicnode.com",
+    "NEXT_PUBLIC_SUPABASE_URL": "https://tnmhbgomjevaizaxmzuy.supabase.co",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "sb_publishable_jOGULb1DwjbG_uLXBtMkLw_bxRoHMT_"
+  }
+}

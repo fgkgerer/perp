@@ -1,0 +1,532 @@
+// MetaNode 永续合约交易系统 API 定义
+// 使用 goctl api go -api metanode.api -dir . 生成代码
+syntax = "v1"
+
+info (
+	title:   "MetaNode API"
+	desc:    "去中心化永续合约交易系统后端 API"
+	author:  "MetaNode Team"
+	version: "1.0"
+)
+
+// ==================== 通用类型 ====================
+type (
+	// 基础响应
+	BaseResp {
+		Code    int    `json:"code"`
+		Message string `json:"message"`
+	}
+	// 分页请求
+	PageReq {
+		Page     int `form:"page,default=1"`
+		PageSize int `form:"pageSize,default=20"`
+	}
+	// 分页响应
+	PageResp {
+		Total    int64 `json:"total"`
+		Page     int   `json:"page"`
+		PageSize int   `json:"pageSize"`
+	}
+)
+
+// ==================== 订单相关 ====================
+type (
+	// 订单信息
+	Order {
+		OrderId      string `json:"orderId"`
+		Perp         string `json:"perp"` // 永续合约地址
+		Signer       string `json:"signer"` // 签名者地址
+		PaperAmount  string `json:"paperAmount"` // 仓位数量
+		CreditAmount string `json:"creditAmount"` // 资金数量
+		MakerFeeRate string `json:"makerFeeRate"` // Maker 手续费率
+		TakerFeeRate string `json:"takerFeeRate"` // Taker 手续费率
+		Expiration   int64  `json:"expiration"` // 过期时间
+		Nonce        int64  `json:"nonce"` // 随机数
+		Signature    string `json:"signature"` // EIP-712 签名
+		Status       int    `json:"status"` // 状态: 0-待处理, 1-部分成交, 2-完全成交, 3-已取消
+		FilledAmount string `json:"filledAmount"` // 已成交数量
+		CreateTime   int64  `json:"createTime"`
+		UpdateTime   int64  `json:"updateTime"`
+	}
+	// 创建订单请求
+	CreateOrderReq {
+		Perp         string `json:"perp"`
+		Signer       string `json:"signer"`
+		PaperAmount  string `json:"paperAmount"`
+		CreditAmount string `json:"creditAmount"`
+		MakerFeeRate string `json:"makerFeeRate"`
+		TakerFeeRate string `json:"takerFeeRate"`
+		Expiration   int64  `json:"expiration"`
+		Nonce        int64  `json:"nonce"`
+		Signature    string `json:"signature"`
+	}
+	// 创建订单响应
+	CreateOrderResp {
+		Code    int    `json:"code"`
+		Message string `json:"message"`
+		OrderId string `json:"orderId"`
+	}
+	// 查询订单请求
+	GetOrderReq {
+		OrderId string `path:"orderId"`
+	}
+	// 查询订单响应
+	GetOrderResp {
+		Code    int    `json:"code"`
+		Message string `json:"message"`
+		Order   Order  `json:"order"`
+	}
+	// 查询用户订单列表请求
+	ListOrdersReq {
+		Signer   string `form:"signer"`
+		Perp     string `form:"perp,optional"`
+		Status   int    `form:"status,optional,default=-1"` // -1表示全部
+		Page     int    `form:"page,default=1"`
+		PageSize int    `form:"pageSize,default=20"`
+	}
+	// 查询用户订单列表响应
+	ListOrdersResp {
+		Code     int     `json:"code"`
+		Message  string  `json:"message"`
+		Orders   []Order `json:"orders"`
+		Total    int64   `json:"total"`
+		Page     int     `json:"page"`
+		PageSize int     `json:"pageSize"`
+	}
+	// 取消订单请求
+	CancelOrderReq {
+		OrderId   string `json:"orderId"`
+		Signer    string `json:"signer"`
+		Signature string `json:"signature"` // 取消签名
+	}
+	// 取消订单响应
+	CancelOrderResp {
+		Code    int    `json:"code"`
+		Message string `json:"message"`
+	}
+)
+
+// ==================== 交易相关 ====================
+type (
+	// 成交记录
+	Trade {
+		TradeId      string `json:"tradeId"`
+		Perp         string `json:"perp"`
+		TakerOrderId string `json:"takerOrderId"`
+		MakerOrderId string `json:"makerOrderId"`
+		Taker        string `json:"taker"`
+		Maker        string `json:"maker"`
+		PaperAmount  string `json:"paperAmount"`
+		Price        string `json:"price"`
+		TakerFee     string `json:"takerFee"`
+		MakerFee     string `json:"makerFee"`
+		TxHash       string `json:"txHash"`
+		BlockNumber  int64  `json:"blockNumber"`
+		CreateTime   int64  `json:"createTime"`
+	}
+	// 查询成交记录请求
+	ListTradesReq {
+		Trader   string `form:"trader,optional"`
+		Perp     string `form:"perp,optional"`
+		Page     int    `form:"page,default=1"`
+		PageSize int    `form:"pageSize,default=20"`
+	}
+	// 查询成交记录响应
+	ListTradesResp {
+		Code     int     `json:"code"`
+		Message  string  `json:"message"`
+		Trades   []Trade `json:"trades"`
+		Total    int64   `json:"total"`
+		Page     int     `json:"page"`
+		PageSize int     `json:"pageSize"`
+	}
+)
+
+// ==================== 仓位相关 ====================
+type (
+	// 仓位信息
+	Position {
+		Trader        string `json:"trader"`
+		Perp          string `json:"perp"`
+		PerpName      string `json:"perpName"`
+		Paper         string `json:"paper"` // 仓位数量
+		Credit        string `json:"credit"` // 资金数量
+		EntryPrice    string `json:"entryPrice"` // 开仓均价
+		MarkPrice     string `json:"markPrice"` // 标记价格
+		UnrealizedPnl string `json:"unrealizedPnl"` // 未实现盈亏
+		Leverage      string `json:"leverage"` // 杠杆倍数
+		LiqPrice      string `json:"liqPrice"` // 清算价格
+		UpdateTime    int64  `json:"updateTime"`
+	}
+	// 查询用户仓位请求
+	GetPositionsReq {
+		Trader string `form:"trader"`
+	}
+	// 查询用户仓位响应
+	GetPositionsResp {
+		Code      int        `json:"code"`
+		Message   string     `json:"message"`
+		Positions []Position `json:"positions"`
+	}
+	// 风险信息
+	RiskInfo {
+		Trader            string `json:"trader"`
+		NetValue          string `json:"netValue"` // 净值
+		Exposure          string `json:"exposure"` // 敞口
+		MaintenanceMargin string `json:"maintenanceMargin"` // 维持保证金
+		AvailableMargin   string `json:"availableMargin"` // 可用保证金
+		MarginRatio       string `json:"marginRatio"` // 保证金率
+		IsSafe            bool   `json:"isSafe"` // 是否安全
+	}
+	// 查询风险信息请求
+	GetRiskInfoReq {
+		Trader string `form:"trader"`
+	}
+	// 查询风险信息响应
+	GetRiskInfoResp {
+		Code     int      `json:"code"`
+		Message  string   `json:"message"`
+		RiskInfo RiskInfo `json:"riskInfo"`
+	}
+)
+
+// ==================== 账户资金相关 ====================
+type (
+	// 账户余额
+	AccountBalance {
+		Trader                   string `json:"trader"`
+		PrimaryCredit            string `json:"primaryCredit"` // 主资产余额
+		SecondaryCredit          string `json:"secondaryCredit"` // 次级资产余额
+		PendingPrimaryWithdraw   string `json:"pendingPrimaryWithdraw"` // 待取款主资产
+		PendingSecondaryWithdraw string `json:"pendingSecondaryWithdraw"` // 待取款次级资产
+		ExecutionTimestamp       int64  `json:"executionTimestamp"` // 可执行取款时间
+	}
+	// 查询账户余额请求
+	GetBalanceReq {
+		Trader string `form:"trader"`
+	}
+	// 查询账户余额响应
+	GetBalanceResp {
+		Code    int            `json:"code"`
+		Message string         `json:"message"`
+		Balance AccountBalance `json:"balance"`
+	}
+	// 存款记录
+	DepositRecord {
+		TxHash          string `json:"txHash"`
+		Trader          string `json:"trader"`
+		PrimaryAmount   string `json:"primaryAmount"`
+		SecondaryAmount string `json:"secondaryAmount"`
+		BlockNumber     int64  `json:"blockNumber"`
+		CreateTime      int64  `json:"createTime"`
+	}
+	// 查询存款记录请求
+	ListDepositsReq {
+		Trader   string `form:"trader"`
+		Page     int    `form:"page,default=1"`
+		PageSize int    `form:"pageSize,default=20"`
+	}
+	// 查询存款记录响应
+	ListDepositsResp {
+		Code     int             `json:"code"`
+		Message  string          `json:"message"`
+		Deposits []DepositRecord `json:"deposits"`
+		Total    int64           `json:"total"`
+		Page     int             `json:"page"`
+		PageSize int             `json:"pageSize"`
+	}
+	// 取款记录
+	WithdrawRecord {
+		TxHash          string `json:"txHash"`
+		Trader          string `json:"trader"`
+		PrimaryAmount   string `json:"primaryAmount"`
+		SecondaryAmount string `json:"secondaryAmount"`
+		Status          int    `json:"status"` // 0-待处理, 1-已完成, 2-已取消
+		BlockNumber     int64  `json:"blockNumber"`
+		CreateTime      int64  `json:"createTime"`
+	}
+	// 查询取款记录请求
+	ListWithdrawsReq {
+		Trader   string `form:"trader"`
+		Page     int    `form:"page,default=1"`
+		PageSize int    `form:"pageSize,default=20"`
+	}
+	// 查询取款记录响应
+	ListWithdrawsResp {
+		Code      int              `json:"code"`
+		Message   string           `json:"message"`
+		Withdraws []WithdrawRecord `json:"withdraws"`
+		Total     int64            `json:"total"`
+		Page      int              `json:"page"`
+		PageSize  int              `json:"pageSize"`
+	}
+)
+
+// ==================== 市场相关 ====================
+type (
+	// 永续合约市场信息
+	PerpMarket {
+		Address              string `json:"address"`
+		Name                 string `json:"name"`
+		InitialMarginRatio   string `json:"initialMarginRatio"` // 初始保证金率
+		LiquidationThreshold string `json:"liquidationThreshold"` // 清算阈值
+		LiquidationPriceOff  string `json:"liquidationPriceOff"` // 清算折扣
+		InsuranceFeeRate     string `json:"insuranceFeeRate"` // 保险费率
+		MarkPrice            string `json:"markPrice"` // 标记价格
+		IndexPrice           string `json:"indexPrice"` // 指数价格
+		FundingRate          string `json:"fundingRate"` // 资金费率
+		OpenInterest         string `json:"openInterest"` // 持仓量
+		Volume24h            string `json:"volume24h"` // 24小时成交量
+		IsRegistered         bool   `json:"isRegistered"`
+	}
+	// 获取所有市场请求
+	ListMarketsReq  {}
+	// 获取所有市场响应
+	ListMarketsResp {
+		Code    int          `json:"code"`
+		Message string       `json:"message"`
+		Markets []PerpMarket `json:"markets"`
+	}
+	// 获取市场详情请求
+	GetMarketReq {
+		Address string `path:"address"`
+	}
+	// 获取市场详情响应
+	GetMarketResp {
+		Code    int        `json:"code"`
+		Message string     `json:"message"`
+		Market  PerpMarket `json:"market"`
+	}
+	// K线数据
+	Kline {
+		Time   int64  `json:"time"`
+		Open   string `json:"open"`
+		High   string `json:"high"`
+		Low    string `json:"low"`
+		Close  string `json:"close"`
+		Volume string `json:"volume"`
+	}
+	// 获取K线请求
+	GetKlinesReq {
+		Perp      string `form:"perp"`
+		Interval  string `form:"interval"` // 1m, 5m, 15m, 1h, 4h, 1d
+		StartTime int64  `form:"startTime,optional"`
+		EndTime   int64  `form:"endTime,optional"`
+		Limit     int    `form:"limit,default=100"`
+	}
+	// 获取K线响应
+	GetKlinesResp {
+		Code    int     `json:"code"`
+		Message string  `json:"message"`
+		Klines  []Kline `json:"klines"`
+	}
+	// 最新成交价
+	Ticker {
+		Perp               string `json:"perp"`
+		Price              string `json:"price"`
+		PriceChange        string `json:"priceChange"`
+		PriceChangePercent string `json:"priceChangePercent"`
+		High24h            string `json:"high24h"`
+		Low24h             string `json:"low24h"`
+		Volume24h          string `json:"volume24h"`
+		UpdateTime         int64  `json:"updateTime"`
+	}
+	// 获取行情请求
+	GetTickerReq {
+		Perp string `form:"perp,optional"` // 为空时返回所有
+	}
+	// 获取行情响应
+	GetTickerResp {
+		Code    int      `json:"code"`
+		Message string   `json:"message"`
+		Tickers []Ticker `json:"tickers"`
+	}
+	// 深度数据
+	OrderBookEntry {
+		Price  string `json:"price"`
+		Amount string `json:"amount"`
+	}
+	// 获取深度请求
+	GetOrderBookReq {
+		Perp  string `form:"perp"`
+		Limit int    `form:"limit,default=20"`
+	}
+	// 获取深度响应
+	GetOrderBookResp {
+		Code    int              `json:"code"`
+		Message string           `json:"message"`
+		Bids    []OrderBookEntry `json:"bids"` // 买单
+		Asks    []OrderBookEntry `json:"asks"` // 卖单
+	}
+)
+
+// ==================== 资金费率相关 ====================
+type (
+	// 资金费率记录
+	FundingRateRecord {
+		Perp       string `json:"perp"`
+		Rate       string `json:"rate"`
+		MarkPrice  string `json:"markPrice"`
+		IndexPrice string `json:"indexPrice"`
+		SettleTime int64  `json:"settleTime"`
+	}
+	// 获取资金费率历史请求
+	ListFundingRatesReq {
+		Perp     string `form:"perp"`
+		Page     int    `form:"page,default=1"`
+		PageSize int    `form:"pageSize,default=20"`
+	}
+	// 获取资金费率历史响应
+	ListFundingRatesResp {
+		Code         int                 `json:"code"`
+		Message      string              `json:"message"`
+		FundingRates []FundingRateRecord `json:"fundingRates"`
+		Total        int64               `json:"total"`
+		Page         int                 `json:"page"`
+		PageSize     int                 `json:"pageSize"`
+	}
+)
+
+// ==================== 清算相关 ====================
+type (
+	// 清算记录
+	LiquidationRecord {
+		TxHash           string `json:"txHash"`
+		Perp             string `json:"perp"`
+		Liquidator       string `json:"liquidator"`
+		LiquidatedTrader string `json:"liquidatedTrader"`
+		PaperChange      string `json:"paperChange"`
+		CreditChange     string `json:"creditChange"`
+		InsuranceFee     string `json:"insuranceFee"`
+		BlockNumber      int64  `json:"blockNumber"`
+		CreateTime       int64  `json:"createTime"`
+	}
+	// 获取清算记录请求
+	ListLiquidationsReq {
+		Trader   string `form:"trader,optional"` // 为空时返回所有
+		Perp     string `form:"perp,optional"`
+		Page     int    `form:"page,default=1"`
+		PageSize int    `form:"pageSize,default=20"`
+	}
+	// 获取清算记录响应
+	ListLiquidationsResp {
+		Code         int                 `json:"code"`
+		Message      string              `json:"message"`
+		Liquidations []LiquidationRecord `json:"liquidations"`
+		Total        int64               `json:"total"`
+		Page         int                 `json:"page"`
+		PageSize     int                 `json:"pageSize"`
+	}
+)
+
+// ==================== API 路由定义 ====================
+@server (
+	prefix: /api/v1
+	group:  order
+)
+service metanode {
+	@doc "创建订单"
+	@handler CreateOrder
+	post /orders (CreateOrderReq) returns (CreateOrderResp)
+
+	@doc "查询订单"
+	@handler GetOrder
+	get /orders/:orderId (GetOrderReq) returns (GetOrderResp)
+
+	@doc "查询订单列表"
+	@handler ListOrders
+	get /orders (ListOrdersReq) returns (ListOrdersResp)
+
+	@doc "取消订单"
+	@handler CancelOrder
+	post /orders/cancel (CancelOrderReq) returns (CancelOrderResp)
+}
+
+@server (
+	prefix: /api/v1
+	group:  trade
+)
+service metanode {
+	@doc "查询成交记录"
+	@handler ListTrades
+	get /trades (ListTradesReq) returns (ListTradesResp)
+}
+
+@server (
+	prefix: /api/v1
+	group:  position
+)
+service metanode {
+	@doc "查询用户仓位"
+	@handler GetPositions
+	get /positions (GetPositionsReq) returns (GetPositionsResp)
+
+	@doc "查询风险信息"
+	@handler GetRiskInfo
+	get /risk (GetRiskInfoReq) returns (GetRiskInfoResp)
+}
+
+@server (
+	prefix: /api/v1
+	group:  account
+)
+service metanode {
+	@doc "查询账户余额"
+	@handler GetBalance
+	get /balance (GetBalanceReq) returns (GetBalanceResp)
+
+	@doc "查询存款记录"
+	@handler ListDeposits
+	get /deposits (ListDepositsReq) returns (ListDepositsResp)
+
+	@doc "查询取款记录"
+	@handler ListWithdraws
+	get /withdraws (ListWithdrawsReq) returns (ListWithdrawsResp)
+}
+
+@server (
+	prefix: /api/v1
+	group:  market
+)
+service metanode {
+	@doc "获取所有市场"
+	@handler ListMarkets
+	get /markets (ListMarketsReq) returns (ListMarketsResp)
+
+	@doc "获取市场详情"
+	@handler GetMarket
+	get /markets/:address (GetMarketReq) returns (GetMarketResp)
+
+	@doc "获取K线数据"
+	@handler GetKlines
+	get /klines (GetKlinesReq) returns (GetKlinesResp)
+
+	@doc "获取行情"
+	@handler GetTicker
+	get /ticker (GetTickerReq) returns (GetTickerResp)
+
+	@doc "获取深度"
+	@handler GetOrderBook
+	get /orderbook (GetOrderBookReq) returns (GetOrderBookResp)
+}
+
+@server (
+	prefix: /api/v1
+	group:  funding
+)
+service metanode {
+	@doc "获取资金费率历史"
+	@handler ListFundingRates
+	get /funding-rates (ListFundingRatesReq) returns (ListFundingRatesResp)
+}
+
+@server (
+	prefix: /api/v1
+	group:  liquidation
+)
+service metanode {
+	@doc "获取清算记录"
+	@handler ListLiquidations
+	get /liquidations (ListLiquidationsReq) returns (ListLiquidationsResp)
+}
+

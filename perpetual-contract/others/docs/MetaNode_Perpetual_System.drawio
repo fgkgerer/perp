@@ -1,0 +1,803 @@
+<mxfile host="app.diagrams.net" modified="2026-02-04T00:00:00.000Z" agent="Cursor" etag="MetaNodePerp" version="21.0.0" type="device">
+  <diagram id="business-scenarios" name="1. 业务场景总览">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- 标题 -->
+        <mxCell id="title1" value="MetaNode 永续合约系统 - 业务场景总览" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;fontColor=#1a1a1a;" vertex="1" parent="1">
+          <mxGeometry x="350" y="20" width="500" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- 场景1: 存取款 -->
+        <mxCell id="scenario1-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#01579b;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="260" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="scenario1-title" value="💰 场景1: 存取款" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#01579b;" vertex="1" parent="1">
+          <mxGeometry x="40" y="90" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="deposit-flow" value="存款流程" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="55" y="125" width="80" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="deposit-step1" value="1. USDC.approve()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#e65100;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="55" y="150" width="110" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="deposit-step2" value="2. dealer.deposit()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#e65100;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="175" y="150" width="110" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="deposit-arrow" value="" style="endArrow=classic;html=1;strokeColor=#e65100;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="165" y="162" as="sourcePoint" />
+            <mxPoint x="175" y="162" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="withdraw-flow" value="取款流程 (两步)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="55" y="185" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="withdraw-step1" value="1. requestWithdraw()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#2e7d32;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="55" y="210" width="230" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="withdraw-step2" value="2. 等待 TimeLock" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#c2185b;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="55" y="245" width="230" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="withdraw-step3" value="3. executeWithdraw()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#2e7d32;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="55" y="280" width="230" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="assets-note" value="支持资产:&#xa;• USDC (主资产)&#xa;• MUSD (次级资产)" style="text;html=1;strokeColor=none;fillColor=#fff9c4;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=10;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="55" y="320" width="230" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- 场景2: 交易 -->
+        <mxCell id="scenario2-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#7b1fa2;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="320" y="80" width="260" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="scenario2-title" value="📈 场景2: 交易" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#7b1fa2;" vertex="1" parent="1">
+          <mxGeometry x="320" y="90" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="trade-long" value="做多 (Long)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c8e6c9;strokeColor=#2e7d32;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="335" y="125" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="trade-short" value="做空 (Short)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="450" y="125" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="trade-params" value="订单参数:&#xa;• paper: 仓位数量 (正=多/负=空)&#xa;• credit: 资金 (与paper异号)&#xa;• makerFee: 0.01%&#xa;• takerFee: 0.05%" style="text;html=1;strokeColor=none;fillColor=#fff9c4;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=10;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="335" y="165" width="230" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="trade-flow" value="交易流程:&#xa;1. 用户签名订单 (EIP-712)&#xa;2. 后端撮合引擎匹配&#xa;3. 调用 perpetual.trade()&#xa;4. 验证签名 &amp; 保证金&#xa;5. 更新仓位" style="text;html=1;strokeColor=none;fillColor=#e1f5fe;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=10;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="335" y="250" width="230" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="trade-example" value="示例: 做多1 BTC @ $30,000&#xa;paper=+1e18, credit=-30000e6" style="text;html=1;strokeColor=none;fillColor=#ede7f6;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=10;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="335" y="340" width="230" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 场景3: 清算 -->
+        <mxCell id="scenario3-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffebee;strokeColor=#c62828;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="600" y="80" width="260" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="scenario3-title" value="⚠️ 场景3: 清算" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#c62828;" vertex="1" parent="1">
+          <mxGeometry x="600" y="90" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="liq-condition" value="清算条件:&#xa;netValue &lt; maintenanceMargin&#xa;&#xa;netValue = 保证金 + 未实现盈亏&#xa;maintenanceMargin = 敞口 × 3%" style="text;html=1;strokeColor=none;fillColor=#fff9c4;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=10;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="615" y="125" width="230" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="liq-params" value="BTC-PERP 风险参数:&#xa;• 初始保证金: 5% (20x杠杆)&#xa;• 维持保证金: 3%&#xa;• 清算折扣: 1%&#xa;• 保险费率: 1%" style="text;html=1;strokeColor=none;fillColor=#e8f5e9;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=10;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="615" y="210" width="230" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="liq-flow" value="清算流程:&#xa;1. 监控 isSafe() 状态&#xa;2. 清算人调用 liquidate()&#xa;3. 获得 1% 折扣奖励&#xa;4. 保险金收取 1% 费用" style="text;html=1;strokeColor=none;fillColor=#e1f5fe;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=10;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="615" y="295" width="230" height="75" as="geometry" />
+        </mxCell>
+        
+        <!-- 场景4: 资金费率 -->
+        <mxCell id="scenario4-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#2e7d32;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="880" y="80" width="260" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="scenario4-title" value="💱 场景4: 资金费率" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#2e7d32;" vertex="1" parent="1">
+          <mxGeometry x="880" y="90" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="funding-purpose" value="作用: 使永续价格锚定现货" style="text;html=1;strokeColor=none;fillColor=#fff9c4;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="895" y="125" width="230" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="funding-positive" value="正费率 (合约价 &gt; 现货价)&#xa;多头付费 → 空头" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="895" y="160" width="230" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="funding-negative" value="负费率 (合约价 &lt; 现货价)&#xa;空头付费 → 多头" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c8e6c9;strokeColor=#2e7d32;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="895" y="210" width="230" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="funding-formula" value="计算公式:&#xa;credit = paper × fundingRate&#xa;&#xa;Keeper 定期调用:&#xa;updateFundingRate(perps, rates)" style="text;html=1;strokeColor=none;fillColor=#e1f5fe;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=10;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="895" y="260" width="230" height="75" as="geometry" />
+        </mxCell>
+        
+        <!-- 底部说明 -->
+        <mxCell id="note-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#9e9e9e;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="400" width="1100" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="note-title" value="📋 关键说明" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="55" y="405" width="120" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="note-content" value="• 永续合约是零和游戏: 多头盈利 = 空头亏损 (忽略手续费)&#xa;• 支持多市场: BTC-PERP (20x), ETH-PERP (10x)&#xa;• EIP-712 签名: 用户链下签名，后端撮合，链上执行" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="55" y="430" width="1070" height="45" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  
+  <diagram id="data-flow" name="2. 前后端合约数据流">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- 标题 -->
+        <mxCell id="df-title" value="MetaNode 永续合约系统 - 前后端合约数据流向" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;fontColor=#1a1a1a;" vertex="1" parent="1">
+          <mxGeometry x="400" y="20" width="600" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- 前端层 -->
+        <mxCell id="frontend-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1565c0;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="400" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="frontend-label" value="🖥️ 前端 (Frontend)" style="text;html=1;strokeColor=none;fillColor=#1565c0;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=16;fontStyle=1;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="400" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="fe-wallet" value="👛 钱包连接&#xa;(wagmi/RainbowKit)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#e65100;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="60" y="125" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="fe-sign" value="✍️ 订单签名&#xa;(EIP-712)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#2e7d32;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="60" y="190" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="fe-deposit" value="💵 存款操作&#xa;approve + deposit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#7b1fa2;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="60" y="255" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="fe-withdraw" value="💸 取款操作&#xa;request + execute" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#c2185b;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="60" y="320" width="160" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="fe-ui" value="📊 交易界面" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0288d1;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="125" width="170" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fe-chart" value="K线图表" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="250" y="175" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fe-orderbook" value="订单簿" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="340" y="175" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fe-position" value="持仓信息" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="250" y="215" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fe-balance" value="余额/盈亏" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="340" y="215" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fe-trade-panel" value="下单面板&#xa;(做多/做空)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="250" y="255" width="170" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fe-api-call" value="🔗 API 调用&#xa;(SWR/TanStack Query)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff9c4;strokeColor=#f9a825;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="250" y="310" width="170" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- 后端层 -->
+        <mxCell id="backend-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#e65100;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="80" width="400" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="backend-label" value="⚙️ 后端 (Backend)" style="text;html=1;strokeColor=none;fillColor=#e65100;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=16;fontStyle=1;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="500" y="80" width="400" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="be-api" value="📡 REST API&#xa;(Swagger)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#2e7d32;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="520" y="125" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="be-ws" value="🔌 WebSocket&#xa;实时数据推送" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#7b1fa2;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="520" y="190" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="be-engine" value="🔄 撮合引擎&#xa;(Matching Engine)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="255" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="be-keeper" value="🤖 Keeper 服务&#xa;(资金费率/清算监控)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0288d1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="520" y="320" width="160" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="be-db" value="🗄️ 数据库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#616161;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="710" y="125" width="170" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="be-db-orders" value="订单存储" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#616161;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="710" y="165" width="80" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="be-db-trades" value="交易记录" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#616161;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="800" y="165" width="80" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="be-db-kline" value="K线数据" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#616161;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="710" y="195" width="80" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="be-db-position" value="仓位快照" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#616161;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="800" y="195" width="80" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="be-indexer" value="📈 链上数据索引器&#xa;监听合约事件" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff9c4;strokeColor=#f9a825;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="710" y="240" width="170" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="be-price" value="💹 价格聚合器&#xa;(Chainlink Oracle)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c8e6c9;strokeColor=#388e3c;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="710" y="295" width="170" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- 合约层 -->
+        <mxCell id="contract-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#2e7d32;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="960" y="80" width="380" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="contract-label" value="📜 智能合约 (On-Chain)" style="text;html=1;strokeColor=none;fillColor=#2e7d32;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=16;fontStyle=1;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="960" y="80" width="380" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="ct-dealer" value="MetaNodeDealer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#bbdefb;strokeColor=#1565c0;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="980" y="125" width="340" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="ct-dealer-funcs" value="• deposit() / requestWithdraw() / executeWithdraw()&#xa;• getCreditOf() / getTraderRisk() / isSafe()&#xa;• getLiquidationPrice() / updateFundingRate()&#xa;• approveTrade() / realizePnl()" style="text;html=1;strokeColor=none;fillColor=#e3f2fd;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=10;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="980" y="165" width="340" height="65" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="ct-perp" value="Perpetual (BTC/ETH)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c8e6c9;strokeColor=#388e3c;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="980" y="240" width="340" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="ct-perp-funcs" value="• trade(tradeData) - 执行交易&#xa;• liquidate(liquidator, trader, paper, credit)&#xa;• balanceOf(trader) - 查询仓位" style="text;html=1;strokeColor=none;fillColor=#e8f5e9;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=10;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="980" y="280" width="340" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="ct-price" value="MarkPriceSource" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff9c4;strokeColor=#f9a825;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="980" y="340" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ct-usdc" value="USDC (ERC20)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#7b1fa2;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="340" width="160" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 箭头: 前端到后端 -->
+        <mxCell id="arrow-fe-be-1" value="签名订单" style="endArrow=classic;html=1;strokeColor=#1565c0;strokeWidth=2;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="fe-sign" target="be-api">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="230" y="215" as="sourcePoint" />
+            <mxPoint x="510" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-fe-be-2" value="查询数据" style="endArrow=classic;startArrow=classic;html=1;strokeColor=#7b1fa2;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="fe-api-call" target="be-api">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="330" as="sourcePoint" />
+            <mxPoint x="510" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- 箭头: 后端到合约 -->
+        <mxCell id="arrow-be-ct-1" value="perpetual.trade()" style="endArrow=classic;html=1;strokeColor=#c62828;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="be-engine" target="ct-perp">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="690" y="280" as="sourcePoint" />
+            <mxPoint x="970" y="257" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-be-ct-2" value="updateFundingRate()" style="endArrow=classic;html=1;strokeColor=#0288d1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="be-keeper">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="690" y="345" as="sourcePoint" />
+            <mxPoint x="980" y="175" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- 箭头: 前端直接到合约 -->
+        <mxCell id="arrow-fe-ct" value="" style="endArrow=classic;html=1;strokeColor=#e65100;strokeWidth=2;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="fe-deposit" target="ct-dealer">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="140" y="400" as="sourcePoint" />
+            <mxPoint x="980" y="145" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="140" y="420" />
+              <mxPoint x="950" y="420" />
+              <mxPoint x="950" y="145" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-fe-ct-label" value="deposit/withdraw (直连合约)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#e65100;" vertex="1" parent="1">
+          <mxGeometry x="400" y="420" width="180" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- 数据流说明 -->
+        <mxCell id="flow-note-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#9e9e9e;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="460" width="1300" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="flow-note-title" value="📊 数据流详解" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="55" y="465" width="150" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow1" value="1️⃣ 交易流程" style="text;html=1;strokeColor=none;fillColor=#e3f2fd;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=11;fontStyle=1;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="55" y="500" width="620" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="flow1-content" value="用户在前端签名订单(EIP-712) → 发送到后端API → 撮合引擎匹配 → 构建tradeData → 调用Perpetual.trade()&#xa;tradeData = abi.encode(orderList, signatureList, matchPaperAmount)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="55" y="520" width="620" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow2" value="2️⃣ 存取款流程" style="text;html=1;strokeColor=none;fillColor=#e8f5e9;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=11;fontStyle=1;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="55" y="570" width="620" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="flow2-content" value="存款: 前端直接调用 USDC.approve() → MetaNodeDealer.deposit()&#xa;取款: requestWithdraw() → 等待TimeLock → executeWithdraw() (可转到外部或内部账户)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="55" y="590" width="620" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow3" value="3️⃣ 清算流程" style="text;html=1;strokeColor=none;fillColor=#ffebee;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=11;fontStyle=1;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="695" y="500" width="620" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="flow3-content" value="Keeper监控 isSafe(trader) → 发现不安全账户 → 调用 Perpetual.liquidate()&#xa;清算人获得折扣奖励，保险金收取费用，被清算者仓位转移" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="695" y="520" width="620" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow4" value="4️⃣ 资金费率" style="text;html=1;strokeColor=none;fillColor=#fff3e0;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=11;fontStyle=1;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="695" y="570" width="620" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="flow4-content" value="Keeper定期计算 (markPrice - indexPrice) / indexPrice → 调用 updateFundingRate(perps, rates)&#xa;持仓credit自动更新: credit = paper × fundingRate + reducedCredit" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="695" y="590" width="620" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  
+  <diagram id="contract-arch" name="3. 合约架构">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- 标题 -->
+        <mxCell id="arch-title" value="MetaNode 永续合约系统 - 合约架构" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;fontColor=#1a1a1a;" vertex="1" parent="1">
+          <mxGeometry x="350" y="20" width="500" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- 核心合约: MetaNodeDealer -->
+        <mxCell id="dealer-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1565c0;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="400" y="80" width="400" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="dealer-title" value="MetaNodeDealer (核心合约)" style="text;html=1;strokeColor=none;fillColor=#1565c0;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=16;fontStyle=1;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="400" y="80" width="400" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="dealer-state" value="状态变量" style="text;html=1;strokeColor=none;fillColor=#bbdefb;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=12;fontStyle=1;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="415" y="120" width="180" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="dealer-state-content" value="• primaryAsset (USDC)&#xa;• secondaryAsset (MUSD)&#xa;• creditMap[trader]&#xa;• perpRiskParams[perp]&#xa;• insurance" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="415" y="145" width="180" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="dealer-funcs" value="核心函数" style="text;html=1;strokeColor=none;fillColor=#bbdefb;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=12;fontStyle=1;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="605" y="120" width="180" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="dealer-funcs-content" value="• deposit() / withdraw()&#xa;• approveTrade()&#xa;• requestLiquidation()&#xa;• openPosition()&#xa;• realizePnl()&#xa;• updateFundingRate()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="605" y="145" width="180" height="90" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="dealer-view" value="查询函数" style="text;html=1;strokeColor=none;fillColor=#c8e6c9;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=12;fontStyle=1;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="415" y="235" width="370" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="dealer-view-content" value="getCreditOf() | getTraderRisk() | isSafe() | getLiquidationPrice() | getAllRegisteredPerps()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="415" y="260" width="370" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="dealer-admin" value="管理函数 (onlyOwner)" style="text;html=1;strokeColor=none;fillColor=#ffcdd2;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=12;fontStyle=1;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="415" y="290" width="370" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="dealer-admin-content" value="setPerpRiskParams() | setSecondaryAsset() | setFundingRateKeeper() | setInsurance()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="415" y="315" width="370" height="25" as="geometry" />
+        </mxCell>
+        
+        <!-- Perpetual 合约 -->
+        <mxCell id="perp-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#2e7d32;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="400" width="280" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="perp-title" value="Perpetual (永续合约)" style="text;html=1;strokeColor=none;fillColor=#2e7d32;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=14;fontStyle=1;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="400" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="perp-state" value="状态: balanceMap[trader] = (paper, credit)" style="text;html=1;strokeColor=none;fillColor=#c8e6c9;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="50" y="435" width="260" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="perp-funcs" value="函数:&#xa;• trade(tradeData) - 验证签名执行交易&#xa;• liquidate() - 执行清算&#xa;• balanceOf() - 查询仓位" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="50" y="465" width="260" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="perp-note" value="每个市场一个实例:&#xa;BTC-PERP, ETH-PERP..." style="text;html=1;strokeColor=none;fillColor=#fff9c4;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="50" y="535" width="260" height="35" as="geometry" />
+        </mxCell>
+        
+        <!-- Types 库 -->
+        <mxCell id="types-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#e65100;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="360" y="400" width="240" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="types-title" value="Types (数据结构)" style="text;html=1;strokeColor=none;fillColor=#e65100;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=14;fontStyle=1;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="360" y="400" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="types-order" value="Order {&#xa;  perp, signer,&#xa;  paperAmount, creditAmount,&#xa;  info (fees + timestamp)&#xa;}" style="text;html=1;strokeColor=none;fillColor=#fff9c4;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=10;spacingLeft=5;fontFamily=monospace;" vertex="1" parent="1">
+          <mxGeometry x="370" y="435" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="types-risk" value="RiskParams {&#xa;  initialMarginRatio,&#xa;  liquidationThreshold,&#xa;  liquidationPriceOff,&#xa;  insuranceFeeRate&#xa;}" style="text;html=1;strokeColor=none;fillColor=#e8f5e9;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=10;spacingLeft=5;fontFamily=monospace;" vertex="1" parent="1">
+          <mxGeometry x="370" y="510" width="220" height="65" as="geometry" />
+        </mxCell>
+        
+        <!-- 外部依赖 -->
+        <mxCell id="external-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#7b1fa2;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="640" y="400" width="200" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="external-title" value="外部依赖" style="text;html=1;strokeColor=none;fillColor=#7b1fa2;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=14;fontStyle=1;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="640" y="400" width="200" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="external-usdc" value="USDC (ERC20)&#xa;主资产 - 6位小数" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7b1fa2;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="655" y="435" width="170" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="external-musd" value="MUSD (ERC20)&#xa;次级资产 - 6位小数" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7b1fa2;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="655" y="480" width="170" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="external-oracle" value="MarkPriceSource&#xa;(Chainlink Oracle)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7b1fa2;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="655" y="525" width="170" height="35" as="geometry" />
+        </mxCell>
+        
+        <!-- 角色 -->
+        <mxCell id="roles-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#616161;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="880" y="400" width="280" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="roles-title" value="系统角色" style="text;html=1;strokeColor=none;fillColor=#616161;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=14;fontStyle=1;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="880" y="400" width="280" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="role-trader" value="👤 Trader (交易者)&#xa;存款/取款/签名订单" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1565c0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="895" y="435" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="role-orderSender" value="📤 OrderSender&#xa;撮合引擎(提交交易)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#2e7d32;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1025" y="435" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="role-liquidator" value="⚠️ Liquidator&#xa;执行清算" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffebee;strokeColor=#c62828;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="895" y="485" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="role-keeper" value="🤖 FundingRateKeeper&#xa;更新资金费率" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#e65100;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1025" y="485" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="role-insurance" value="🏦 Insurance&#xa;保险账户" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#7b1fa2;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="895" y="535" width="120" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="role-owner" value="👑 Owner&#xa;管理员" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#c2185b;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1025" y="535" width="120" height="35" as="geometry" />
+        </mxCell>
+        
+        <!-- 连接箭头 -->
+        <mxCell id="arrow-dealer-perp" value="" style="endArrow=classic;startArrow=classic;html=1;strokeColor=#2e7d32;strokeWidth=2;exitX=0;exitY=0.8;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="dealer-box" target="perp-box">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="300" y="300" as="sourcePoint" />
+            <mxPoint x="180" y="390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-dealer-perp-label" value="approveTrade&#xa;requestLiquidation" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#2e7d32;" vertex="1" parent="1">
+          <mxGeometry x="255" y="360" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-dealer-types" value="" style="endArrow=classic;html=1;strokeColor=#e65100;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="dealer-box" target="types-box">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="480" y="370" as="sourcePoint" />
+            <mxPoint x="480" y="390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow-dealer-external" value="" style="endArrow=classic;html=1;strokeColor=#7b1fa2;strokeWidth=2;exitX=1;exitY=0.8;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="dealer-box" target="external-box">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="810" y="300" as="sourcePoint" />
+            <mxPoint x="740" y="390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- 底部说明 -->
+        <mxCell id="arch-note" value="📋 架构说明: MetaNodeDealer 是核心结算合约，管理用户资金和风险。每个交易对有独立的 Perpetual 合约实例。交易通过 EIP-712 签名验证，由撮合引擎批量提交到链上执行。" style="text;html=1;strokeColor=none;fillColor=#fafafa;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;spacingLeft=10;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="600" width="1120" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  
+  <diagram id="trading-sequence" name="4. 交易时序图">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- 标题 -->
+        <mxCell id="seq-title" value="MetaNode 永续合约 - 交易时序图" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;fontColor=#1a1a1a;" vertex="1" parent="1">
+          <mxGeometry x="350" y="20" width="500" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- 参与者 -->
+        <mxCell id="actor-alice" value="👤 Alice&#xa;(Taker)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1565c0;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="80" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="actor-bob" value="👤 Bob&#xa;(Maker)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#2e7d32;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="80" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="actor-fe" value="🖥️ Frontend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#7b1fa2;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="80" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="actor-be" value="⚙️ Backend&#xa;(撮合引擎)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#e65100;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="80" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="actor-perp" value="📜 Perpetual&#xa;(合约)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c8e6c9;strokeColor=#388e3c;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="80" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="actor-dealer" value="🏦 Dealer&#xa;(核心合约)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#bbdefb;strokeColor=#1565c0;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="80" width="100" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- 生命线 -->
+        <mxCell id="line-alice" value="" style="endArrow=none;html=1;strokeColor=#1565c0;strokeWidth=2;dashed=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="130" y="130" as="sourcePoint" />
+            <mxPoint x="130" y="700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="line-bob" value="" style="endArrow=none;html=1;strokeColor=#2e7d32;strokeWidth=2;dashed=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="290" y="130" as="sourcePoint" />
+            <mxPoint x="290" y="700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="line-fe" value="" style="endArrow=none;html=1;strokeColor=#7b1fa2;strokeWidth=2;dashed=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="130" as="sourcePoint" />
+            <mxPoint x="450" y="700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="line-be" value="" style="endArrow=none;html=1;strokeColor=#e65100;strokeWidth=2;dashed=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="610" y="130" as="sourcePoint" />
+            <mxPoint x="610" y="700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="line-perp" value="" style="endArrow=none;html=1;strokeColor=#388e3c;strokeWidth=2;dashed=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="770" y="130" as="sourcePoint" />
+            <mxPoint x="770" y="700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="line-dealer" value="" style="endArrow=none;html=1;strokeColor=#1565c0;strokeWidth=2;dashed=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="930" y="130" as="sourcePoint" />
+            <mxPoint x="930" y="700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- 步骤1: Alice 下单 -->
+        <mxCell id="step1-label" value="1. 做多订单" style="text;html=1;strokeColor=none;fillColor=#e3f2fd;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="150" width="80" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="step1-arrow" value="提交做多 1 BTC @ $30,000" style="endArrow=classic;html=1;strokeColor=#1565c0;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="130" y="175" as="sourcePoint" />
+            <mxPoint x="450" y="175" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- 步骤2: 前端构建订单 -->
+        <mxCell id="step2-label" value="2. 构建 EIP-712 订单" style="text;html=1;strokeColor=none;fillColor=#f3e5f5;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="375" y="195" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="step2-box" value="Order {&#xa;  paper: +1e18&#xa;  credit: -30000e6&#xa;  makerFee: 0.01%&#xa;  takerFee: 0.05%&#xa;}" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7b1fa2;fontSize=9;align=left;spacingLeft=5;fontFamily=monospace;" vertex="1" parent="1">
+          <mxGeometry x="410" y="220" width="120" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- 步骤3: Alice 签名 -->
+        <mxCell id="step3-arrow" value="请求签名" style="endArrow=classic;html=1;strokeColor=#7b1fa2;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="315" as="sourcePoint" />
+            <mxPoint x="130" y="315" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step3-return" value="签名 (v,r,s)" style="endArrow=classic;html=1;strokeColor=#1565c0;strokeWidth=2;dashed=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="130" y="340" as="sourcePoint" />
+            <mxPoint x="450" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- 步骤4: Bob 做空 (并行) -->
+        <mxCell id="step4-label" value="3. 做空订单 (同时)" style="text;html=1;strokeColor=none;fillColor=#e8f5e9;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="185" y="360" width="110" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="step4-arrow" value="提交做空 1 BTC @ $30,000" style="endArrow=classic;html=1;strokeColor=#2e7d32;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="290" y="390" as="sourcePoint" />
+            <mxPoint x="450" y="390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step4-sign" value="签名" style="endArrow=classic;html=1;strokeColor=#2e7d32;strokeWidth=2;dashed=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="290" y="415" as="sourcePoint" />
+            <mxPoint x="450" y="415" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- 步骤5: 发送到后端 -->
+        <mxCell id="step5-arrow" value="发送签名订单" style="endArrow=classic;html=1;strokeColor=#7b1fa2;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="445" as="sourcePoint" />
+            <mxPoint x="610" y="445" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- 步骤6: 撮合 -->
+        <mxCell id="step6-label" value="4. 撮合引擎匹配" style="text;html=1;strokeColor=none;fillColor=#fff3e0;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="550" y="465" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="step6-box" value="构建 tradeData:&#xa;abi.encode(&#xa;  [order1, order2],&#xa;  [sig1, sig2],&#xa;  [1e18, 1e18]&#xa;)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e65100;fontSize=9;align=left;spacingLeft=5;fontFamily=monospace;" vertex="1" parent="1">
+          <mxGeometry x="560" y="490" width="130" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- 步骤7: 调用合约 -->
+        <mxCell id="step7-arrow" value="perpetual.trade(tradeData)" style="endArrow=classic;html=1;strokeColor=#e65100;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="610" y="585" as="sourcePoint" />
+            <mxPoint x="770" y="585" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- 步骤8: 验证和执行 -->
+        <mxCell id="step8-arrow1" value="approveTrade()" style="endArrow=classic;html=1;strokeColor=#388e3c;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="770" y="610" as="sourcePoint" />
+            <mxPoint x="930" y="610" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step8-label" value="5. 验证签名 &amp; 保证金" style="text;html=1;strokeColor=none;fillColor=#bbdefb;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="855" y="625" width="130" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="step8-arrow2" value="扣除手续费" style="endArrow=classic;html=1;strokeColor=#1565c0;strokeWidth=2;dashed=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="930" y="650" as="sourcePoint" />
+            <mxPoint x="770" y="650" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- 步骤9: 更新仓位 -->
+        <mxCell id="step9-label" value="6. 更新 balanceMap" style="text;html=1;strokeColor=none;fillColor=#c8e6c9;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="710" y="670" width="120" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- 右侧说明 -->
+        <mxCell id="seq-note" value="交易结果:&#xa;&#xa;Alice (Taker):&#xa;• paper: +1 BTC&#xa;• fee: 0.05% = $15&#xa;&#xa;Bob (Maker):&#xa;• paper: -1 BTC&#xa;• fee: 0.01% = $3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#9e9e9e;fontSize=10;align=left;spacingLeft=10;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="150" width="140" height="150" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  
+  <diagram id="position-storage" name="5. 仓位存储结构">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- 标题 -->
+        <mxCell id="ps-title" value="MetaNode 永续合约 - 多头/空头仓位存储结构" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;fontColor=#1a1a1a;" vertex="1" parent="1">
+          <mxGeometry x="300" y="20" width="600" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- Perpetual 合约存储 -->
+        <mxCell id="perp-storage-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#2e7d32;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="540" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="perp-storage-title" value="📜 Perpetual 合约 (BTC-PERP) - 仓位存储" style="text;html=1;strokeColor=none;fillColor=#2e7d32;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=16;fontStyle=1;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="540" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- balance 结构体 -->
+        <mxCell id="balance-struct" value="struct balance {&#xa;    int128 paper;          // 仓位数量&#xa;    int128 reducedCredit;  // 约减资金&#xa;}" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#2e7d32;fontSize=11;align=left;spacingLeft=10;fontFamily=monospace;" vertex="1" parent="1">
+          <mxGeometry x="60" y="125" width="250" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- balanceMap 说明 -->
+        <mxCell id="balancemap-label" value="mapping(address => balance) balanceMap" style="text;html=1;strokeColor=none;fillColor=#c8e6c9;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;fontFamily=monospace;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="320" y="125" width="250" height="25" as="geometry" />
+        </mxCell>
+        
+        <!-- Alice 多头仓位 -->
+        <mxCell id="alice-position-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c8e6c9;strokeColor=#388e3c;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="200" width="250" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="alice-label" value="👤 Alice (多头 Long)" style="text;html=1;strokeColor=none;fillColor=#388e3c;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=12;fontStyle=1;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="60" y="200" width="250" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="alice-paper" value="paper = +1e18 (正数=多头)" style="text;html=1;strokeColor=none;fillColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;spacingLeft=5;fontFamily=monospace;" vertex="1" parent="1">
+          <mxGeometry x="70" y="235" width="230" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="alice-credit" value="reducedCredit = -30000e6" style="text;html=1;strokeColor=none;fillColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;spacingLeft=5;fontFamily=monospace;" vertex="1" parent="1">
+          <mxGeometry x="70" y="265" width="230" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="alice-explain" value="含义: 持有 1 BTC, 欠 $30,000" style="text;html=1;strokeColor=none;fillColor=#e8f5e9;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="70" y="295" width="230" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- Bob 空头仓位 -->
+        <mxCell id="bob-position-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="320" y="200" width="250" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="bob-label" value="👤 Bob (空头 Short)" style="text;html=1;strokeColor=none;fillColor=#c62828;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=12;fontStyle=1;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="320" y="200" width="250" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="bob-paper" value="paper = -1e18 (负数=空头)" style="text;html=1;strokeColor=none;fillColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;spacingLeft=5;fontFamily=monospace;" vertex="1" parent="1">
+          <mxGeometry x="330" y="235" width="230" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="bob-credit" value="reducedCredit = +30000e6" style="text;html=1;strokeColor=none;fillColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;spacingLeft=5;fontFamily=monospace;" vertex="1" parent="1">
+          <mxGeometry x="330" y="265" width="230" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="bob-explain" value="含义: 欠 1 BTC, 持有 $30,000" style="text;html=1;strokeColor=none;fillColor=#ffebee;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="330" y="295" width="230" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- fundingRate -->
+        <mxCell id="funding-rate-box" value="int256 fundingRate = 1e14 (累计资金费率)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff9c4;strokeColor=#f9a825;fontSize=11;fontFamily=monospace;" vertex="1" parent="1">
+          <mxGeometry x="60" y="330" width="510" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- credit 计算公式 -->
+        <mxCell id="credit-formula" value="💡 实际 credit 计算: credit = paper × fundingRate + reducedCredit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1565c0;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="375" width="510" height="35" as="geometry" />
+        </mxCell>
+        
+        <!-- Dealer 合约存储 -->
+        <mxCell id="dealer-storage-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1565c0;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="620" y="80" width="540" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="dealer-storage-title" value="🏦 MetaNodeDealer 合约 - 保证金存储" style="text;html=1;strokeColor=none;fillColor=#1565c0;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=16;fontStyle=1;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="620" y="80" width="540" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- primaryCredit -->
+        <mxCell id="primary-credit-label" value="mapping(address => int256) primaryCredit  // USDC 余额" style="text;html=1;strokeColor=none;fillColor=#bbdefb;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;fontFamily=monospace;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="640" y="125" width="500" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="alice-balance" value="primaryCredit[Alice] = 9985e6  ($9,985 扣除手续费后)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c8e6c9;strokeColor=#388e3c;fontSize=11;fontFamily=monospace;align=left;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="640" y="160" width="500" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bob-balance" value="primaryCredit[Bob] = 9997e6  ($9,997 扣除手续费后)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=11;fontFamily=monospace;align=left;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="640" y="200" width="500" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- openPositions -->
+        <mxCell id="open-positions-label" value="mapping(address => address[]) openPositions  // 持仓市场列表" style="text;html=1;strokeColor=none;fillColor=#bbdefb;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;fontFamily=monospace;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="640" y="250" width="500" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="alice-positions" value="openPositions[Alice] = [BTC-PERP]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c8e6c9;strokeColor=#388e3c;fontSize=11;fontFamily=monospace;align=left;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="640" y="285" width="500" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="bob-positions" value="openPositions[Bob] = [BTC-PERP]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=11;fontFamily=monospace;align=left;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="640" y="315" width="500" height="25" as="geometry" />
+        </mxCell>
+        
+        <!-- Risk Params -->
+        <mxCell id="risk-params-label" value="perpRiskParams[BTC-PERP] = { initialMarginRatio: 5%, liquidationThreshold: 3% }" style="text;html=1;strokeColor=none;fillColor=#fff9c4;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;fontFamily=monospace;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="640" y="360" width="500" height="25" as="geometry" />
+        </mxCell>
+        
+        <!-- 盈亏计算说明 -->
+        <mxCell id="pnl-calc-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#9e9e9e;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="450" width="1120" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="pnl-calc-title" value="📊 盈亏计算示例 (假设 BTC 价格从 $30,000 涨到 $35,000)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="55" y="455" width="500" height="25" as="geometry" />
+        </mxCell>
+        
+        <!-- Alice 盈亏 -->
+        <mxCell id="alice-pnl-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c8e6c9;strokeColor=#388e3c;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="55" y="490" width="530" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="alice-pnl-title" value="Alice (多头) - 盈利 🎉" style="text;html=1;strokeColor=none;fillColor=#388e3c;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=12;fontStyle=1;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="55" y="490" width="530" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="alice-pnl-calc" value="仓位价值 = paper × markPrice = +1 BTC × $35,000 = +$35,000&#xa;credit (欠款) = -$30,000&#xa;未实现盈亏 = +$35,000 + (-$30,000) = +$5,000 ✅&#xa;&#xa;净值 = primaryCredit + 未实现盈亏 = $9,985 + $5,000 = $14,985" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;spacingLeft=10;fontFamily=monospace;" vertex="1" parent="1">
+          <mxGeometry x="65" y="520" width="510" height="100" as="geometry" />
+        </mxCell>
+        
+        <!-- Bob 盈亏 -->
+        <mxCell id="bob-pnl-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="615" y="490" width="530" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="bob-pnl-title" value="Bob (空头) - 亏损 😢" style="text;html=1;strokeColor=none;fillColor=#c62828;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=12;fontStyle=1;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="615" y="490" width="530" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="bob-pnl-calc" value="仓位价值 = paper × markPrice = -1 BTC × $35,000 = -$35,000&#xa;credit (持有) = +$30,000&#xa;未实现盈亏 = -$35,000 + (+$30,000) = -$5,000 ❌&#xa;&#xa;净值 = primaryCredit + 未实现盈亏 = $9,997 + (-$5,000) = $4,997" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;spacingLeft=10;fontFamily=monospace;" vertex="1" parent="1">
+          <mxGeometry x="625" y="520" width="510" height="100" as="geometry" />
+        </mxCell>
+        
+        <!-- 底部说明 -->
+        <mxCell id="ps-note" value="💡 关键设计: 使用 reducedCredit 存储而非直接存 credit，当资金费率更新时，所有持仓者的 credit 自动变化，无需遍历更新每个用户！" style="text;html=1;strokeColor=none;fillColor=#fff9c4;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=12;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="665" width="1120" height="35" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

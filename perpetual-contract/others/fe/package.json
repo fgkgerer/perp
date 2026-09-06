@@ -1,0 +1,33 @@
+{
+  "name": "perp-detail",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.2.0",
+    "@rainbow-me/rainbowkit": "^2.2.10",
+    "@supabase/supabase-js": "^2.106.2",
+    "@tanstack/react-query": "^5.90.20",
+    "lightweight-charts": "^5.1.0",
+    "next": "canary",
+    "react": "latest",
+    "react-dom": "latest",
+    "viem": "^2.45.1",
+    "wagmi": "^2.19.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "autoprefixer": "latest",
+    "postcss": "latest",
+    "tailwindcss": "latest",
+    "typescript": "latest"
+  }
+}

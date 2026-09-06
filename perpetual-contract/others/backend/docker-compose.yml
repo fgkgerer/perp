@@ -1,0 +1,20 @@
+# 本地 / 单机生产雏形：API + Redis（Postgres 仍用 Supabase 云）
+services:
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
+  metanode:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "28888:28888"
+    depends_on:
+      - redis
+    volumes:
+      # 复制 etc/metanode.yaml 为 metanode.prod.yaml 并填入 Supabase / 私钥
+      - ./etc/metanode.prod.yaml:/app/etc/metanode.yaml:ro
+    environment:
+      TZ: UTC

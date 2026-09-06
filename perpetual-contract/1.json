@@ -1,0 +1,65 @@
+{
+
+
+
+    "highestBidPrice": "", // 最近挂的最高价格的买单
+    "lowestAskPrice": "", // 最低价格的卖单
+    "Asks": [
+        {
+            "price": "2000",
+            "tokenInAddress": "ETH",
+            "tokenOutAddress": "USDC",
+            "tokenInAmount": "2",
+            "tokenOutAmount": "",
+            "tokenInDecimals": 18,
+            "tokenOutDecimals": 18
+        },
+        {
+            "price": "2050",
+            "tokenInAddress": "ETH",
+            "tokenOutAddress": "USDC",
+            "tokenInAmount": "2",
+            "tokenOutAmount": "",
+            "tokenInDecimals": 18,
+            "tokenOutDecimals": 18
+        }
+    ],
+    "Bids": [
+        {
+            "price": "1800",
+            "tokenInAddress": "ETH",
+            "tokenOutAddress": "USDC",
+            "tokenInAmount": "0.5",
+            "tokenOutAmount": "",
+            "tokenInDecimals": 18,
+            "tokenOutDecimals": 18
+        },
+        {
+            "price": "2000",
+            "tokenInAddress": "ETH",
+            "tokenOutAddress": "USDC",
+            "tokenInAmount": "0.5",
+            "tokenOutAmount": "",
+            "tokenInDecimals": 18,
+            "tokenOutDecimals": 18
+        },
+        {
+            "price": "2000",
+            "tokenInAddress": "ETH",
+            "tokenOutAddress": "USDC",
+            "tokenInAmount": "0.5",
+            "tokenOutAmount": "",
+            "tokenInDecimals": 18,
+            "tokenOutDecimals": 18
+        },
+        {
+            "price": "1800",
+            "tokenInAddress": "ETH",
+            "tokenOutAddress": "USDC",
+            "tokenInAmount": "0.5",
+            "tokenOutAmount": "",
+            "tokenInDecimals": 18,
+            "tokenOutDecimals": 18
+        }
+    ]
+}

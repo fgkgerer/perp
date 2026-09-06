@@ -1,0 +1,74 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: eth-devnet
+  labels:
+    app: eth-devnet
+spec:
+  ports:
+    - port: 8545
+      name: rpc
+      protocol: TCP
+  clusterIP: None
+  selector:
+    app: eth-devnet
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: eth-devnet
+spec:
+  selector:
+    matchLabels:
+      app: eth-devnet
+  serviceName: eth-devnet
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: eth-devnet
+    spec:
+      terminationGracePeriodSeconds: 1
+      containers:
+        - name: ganache
+          image: eth-node
+          command:
+            - npx
+            - ganache-cli
+            - --logging.quiet
+            - --wallet.defaultBalance=10000
+            - --wallet.deterministic
+            - --chain.time="1970-01-01T00:00:00+00:00"
+            - --host=0.0.0.0
+            - --wallet.totalAccounts=13
+            - --chain.chainId=1
+            - --chain.asyncRequestProcessing=false
+          ports:
+            - containerPort: 8545
+              name: rpc
+              protocol: TCP
+          readinessProbe:
+            tcpSocket:
+              port: rpc
+        - name: tests
+          image: eth-node
+          stdin: true
+          command:
+            - /bin/sh
+            - -c
+            - "npm run migrate && npx truffle exec scripts/deploy_test_token.js && npx truffle exec scripts/register_all_chains.js && npm run deploy-relayers-evm1 && nc -lkn 2000"
+          readinessProbe:
+            periodSeconds: 1
+            failureThreshold: 300
+            initialDelaySeconds: 90
+            tcpSocket:
+              port: 2000
+        - name: mine
+          image: eth-node
+          command:
+            - /bin/sh
+            - -c
+            - "npx truffle exec mine.js"
+---
+

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#475569"/>
+    </marker>
+    <style>
+      .t { font-size: 18px; font-weight: 700; fill: #0f172a; }
+      .h { font-size: 13px; font-weight: 600; fill: #1e293b; }
+      .p { font-size: 12px; fill: #475569; }
+      .me { fill: #eff6ff; stroke: #2563eb; stroke-width: 2; }
+      .ob { fill: #ecfdf5; stroke: #059669; stroke-width: 2; }
+      .db { fill: #fefce8; stroke: #ca8a04; stroke-width: 2; }
+      .chain { fill: #fdf4ff; stroke: #9333ea; stroke-width: 2; }
+      .api { fill: #f1f5f9; stroke: #64748b; stroke-width: 2; }
+    </style>
+  </defs>
+
+  <text x="450" y="30" text-anchor="middle" class="t">MatchEngine &#24635;&#20307;&#26550;&#26500;</text>
+
+  <rect x="40" y="60" width="140" height="56" rx="10" class="api"/>
+  <text x="110" y="86" text-anchor="middle" class="h">HTTP API</text>
+  <text x="110" y="104" text-anchor="middle" class="p">POST /orders</text>
+
+  <rect x="240" y="48" width="420" height="380" rx="12" class="me"/>
+  <text x="450" y="76" text-anchor="middle" class="h">MatchEngine</text>
+
+  <rect x="270" y="96" width="360" height="88" rx="8" class="ob"/>
+  <text x="450" y="122" text-anchor="middle" class="h">orderBooks: map[perp] &#8594; OrderBook</text>
+  <text x="450" y="142" text-anchor="middle" class="p">BTC-PERP / ETH-PERP &#183; &#20215;&#26777; + FIFO</text>
+  <text x="450" y="162" text-anchor="middle" class="p">SnapshotOrderBook / MidMarkPrice</text>
+
+  <rect x="270" y="204" width="170" height="72" rx="8" class="ob"/>
+  <text x="355" y="230" text-anchor="middle" class="h">pendingTrades</text>
+  <text x="355" y="250" text-anchor="middle" class="p">&#24453;&#19978;&#38142;&#25104;&#20132;&#38431;&#21015;</text>
+  <text x="355" y="266" text-anchor="middle" class="p">MatchResult[]</text>
+
+  <rect x="460" y="204" width="170" height="72" rx="8" class="ob"/>
+  <text x="545" y="230" text-anchor="middle" class="h">eventQueue</text>
+  <text x="545" y="250" text-anchor="middle" class="p">Leader &#20107;&#20214;&#24490;&#29615;</text>
+  <text x="545" y="266" text-anchor="middle" class="p">chan EngineEvent</text>
+
+  <rect x="270" y="296" width="360" height="56" rx="8" class="ob"/>
+  <text x="450" y="322" text-anchor="middle" class="h">eventLoop + match() + submitLoop</text>
+  <text x="450" y="340" text-anchor="middle" class="p">100ms &#20132;&#21449;&#25788;&#21512; &#183; 1s &#25209;&#37327;&#19978;&#38142;</text>
+
+  <rect x="270" y="368" width="170" height="48" rx="8" class="ob"/>
+  <text x="355" y="398" text-anchor="middle" class="p">Redis Leader Lock</text>
+
+  <rect x="460" y="368" width="170" height="48" rx="8" class="ob"/>
+  <text x="545" y="398" text-anchor="middle" class="p">lastEventSeq / recovered</text>
+
+  <rect x="720" y="96" width="160" height="88" rx="8" class="db"/>
+  <text x="800" y="122" text-anchor="middle" class="h">PostgreSQL</text>
+  <text x="800" y="142" text-anchor="middle" class="p">orders</text>
+  <text x="800" y="158" text-anchor="middle" class="p">engine_events (WAL)</text>
+  <text x="800" y="174" text-anchor="middle" class="p">trades</text>
+
+  <rect x="720" y="220" width="160" height="72" rx="8" class="chain"/>
+  <text x="800" y="248" text-anchor="middle" class="h">Sepolia</text>
+  <text x="800" y="268" text-anchor="middle" class="p">Perpetual.trade()</text>
+  <text x="800" y="284" text-anchor="middle" class="p">validOrderSender</text>
+
+  <line x1="180" y1="88" x2="240" y2="120" stroke="#475569" marker-end="url(#arr)"/>
+  <text x="200" y="108" class="p">AddOrder</text>
+
+  <line x1="630" y1="140" x2="720" y2="140" stroke="#475569" marker-end="url(#arr)"/>
+  <text x="668" y="132" class="p">WAL</text>
+
+  <line x1="440" y1="240" x2="720" y2="256" stroke="#475569" marker-end="url(#arr)"/>
+  <text x="560" y="232" class="p">submitTrades</text>
+
+  <line x1="800" y1="184" x2="800" y2="220" stroke="#475569" marker-end="url(#arr)"/>
+  <text x="812" y="206" class="p">settled</text>
+</svg>

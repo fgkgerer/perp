@@ -1,0 +1,25 @@
+.coverage*
+.DS_Store
+.env
+.env.base_mainnet
+.env.base_testnet
+.idea
+.vscode
+
+forge.config
+verification_input.json
+
+artifacts/
+cache/
+node_modules/
+coverage/
+interact/
+script/history.txt
+broadcast/
+# VIM
+*.swo
+*.swp
+out/
+report/
+lcov.info
+node_modules/

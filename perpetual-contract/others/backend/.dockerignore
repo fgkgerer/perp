@@ -1,0 +1,7 @@
+bin/
+*.exe
+.git/
+.idea/
+.vscode/
+*.log
+etc/metanode.prod.yaml

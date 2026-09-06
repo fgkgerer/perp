@@ -1,0 +1,4 @@
+@zelt-src/=src/
+@zelt-test/=test/
+@forge-std/=lib/forge-std/src/
+
