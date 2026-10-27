@@ -888,7 +888,7 @@ func (e *MatchEngine) submitBatch(trades []*MatchResult) {
 		}
 
 		txHash := tx.Hash().Hex()
-		rec, err := bind.WaitMined(ctx, e.chain.RPC(), tx)
+		rec, err := bind.WaitMined(ctx, e.chain.RPC(), tx) //go-ethereum 中用于阻塞等待交易被打包上链并获取回执的标准工具方法
 		if err != nil {
 			logx.Errorf("WaitMined %s: %v", txHash, err)
 			e.rollbackMatch(trade, matchAmt)

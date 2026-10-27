@@ -95,7 +95,7 @@ func (w *TreasuryDepositWatcher) lookback() uint64 {
 	return l
 }
 
-func (w *TreasuryDepositWatcher) loop() {
+func (w *TreasuryDepositWatcher) loop() { //type Duration int64 // 单位：纳秒
 	interval := time.Duration(w.pollSeconds()) * time.Second
 	ticker := time.NewTicker(interval)
 	defer ticker.Stop()

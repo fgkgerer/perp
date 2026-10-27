@@ -152,7 +152,7 @@ func (f *CoinbaseFeed) connectOnce() error {
 	logx.Infof("Coinbase feed subscribed: %v", ids)
 
 	done := make(chan struct{})
-	go func() {
+	go func() { //3. 启动心跳保活 goroutine
 		ticker := time.NewTicker(30 * time.Second)
 		defer ticker.Stop()
 		for {
@@ -167,7 +167,14 @@ func (f *CoinbaseFeed) connectOnce() error {
 		}
 	}()
 	defer close(done)
-
+	/**
+		这是一个无限循环，核心逻辑：
+	先检查 f.stop：如果外部调了 Stop()，优雅退出返回 nil
+	conn.ReadMessage() 阻塞等待：这是阻塞调用，没有消息时会挂住不占 CPU
+	读到消息后：JSON 反序列化 → 过滤非 ticker 类型 → 交给 handleTicker 处理
+	读出错时：返回错误 → 外层 run() 会 sleep 后重连
+	5. 连接断开后的重连机制（在 run() 里）
+	**/
 	for {
 		select {
 		case <-f.stop:

@@ -35,7 +35,7 @@ abstract contract MetaNodeView is MetaNodeStorage, IDealer {
         params = state.perpRiskParams[perp];
     }
 
-    /**
+    /** 
      * @notice 获取所有已注册的永续合约地址
      * @return 永续合约地址数组
      */

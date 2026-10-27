@@ -65,6 +65,7 @@ func (l *CreateOrderLogic) CreateOrder(req *types.CreateOrderReq) (resp *types.C
 	orderId := h.Hex()
 	order.OrderId = orderId
 
+	//验证签名
 	if l.svcCtx.Chain != nil {
 		if err := chain.VerifyEOASignature(dc, order); err != nil {
 			return &types.CreateOrderResp{Code: 400, Message: "Invalid signature: " + err.Error()}, nil

@@ -413,7 +413,7 @@ func (c *Client) SubmitPerpTrade(ctx context.Context, perp common.Address, trade
 		Value:    big.NewInt(0),
 		Data:     data,
 	})
-	signer := types.LatestSignerForChainID(c.chainID)
+	signer := types.LatestSignerForChainID(c.chainID) //这个函数的核心作用是：在不知道当前区块高度和硬分叉配置的情况下，根据 ChainID 返回一个“最宽松/兼容性最强”的交易签名器。
 	signed, err := types.SignTx(tx, signer, c.signerKey)
 	if err != nil {
 		return nil, err

@@ -22,6 +22,7 @@ pragma solidity ^0.8.19;
  *      调用方需确保参数在安全范围内
  */
 library SignedDecimalMath {
+    ///注意类型匹配：1e18 默认是 uint256 字面量，赋给 int256 变量时编译器会自动转换，但如果你要写负数基数，就得显式转换，比如 int256(-1e18)。
     /// @notice 有符号的基数 (1e18)
     int256 constant SignedONE = 10 ** 18;
     /// @notice 无符号的基数 (1e18)

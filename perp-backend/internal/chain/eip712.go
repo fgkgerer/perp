@@ -61,6 +61,7 @@ func HashOrderStruct(perp, signer common.Address, paperAmount, creditAmount *big
 	// int128 在内存中符号扩展为 32 字节，与 abi.encode(int256) 一致
 	pap := new(big.Int).Set(paperAmount)
 	cre := new(big.Int).Set(creditAmount)
+	//abi.Arguments.Pack ≈ Solidity 的 abi.encode
 	packed, err := args.Pack(orderTypeHash, perp, signer, pap, cre, info)
 	if err != nil {
 		panic(err)

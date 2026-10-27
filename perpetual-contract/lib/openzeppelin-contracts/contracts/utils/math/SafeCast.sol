@@ -843,6 +843,10 @@ library SafeCast {
      * - input must fit into 128 bits
      *
      * _Available since v3.1._
+
+     downcasted == value 能成立，不是因为它们的类型相同，而是因为 Solidity 在做 == 比较时，会自动把较小类型提升为较大类型，然后再比较数值。
+所以这个 require 检查的本质是：
+把 int128 的 downcasted 提升回 int256，再和原来的 value 比较，看数值有没有丢失。
      */
     function toInt128(int256 value) internal pure returns (int128 downcasted) {
         downcasted = int128(value);

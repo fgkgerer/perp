@@ -105,19 +105,29 @@ func OrderDigestWith(dc DealerChain, o *model.Order) (common.Hash, error) {
 
 // VerifyEOASignature 验证订单由 signer EOA 签名（不支持合约钱包的 EIP-1271）。
 func VerifyEOASignature(dc DealerChain, o *model.Order) error {
+	// 1. 算出用户应当签名的那个 32 字节摘要（EIP-712 digest）
 	digest, err := OrderDigestWith(dc, o)
 	if err != nil {
 		return err
 	}
+	//sig 就是用户（maker/taker）用自己钱包私钥，对这笔订单算出来的 ECDSA 签名，是一段 65 字节的二进制：sig = R(32字节) || S(32字节) || V(1字节)
+	/**
+	数据来源就是订单里存的 o.Signature 字段（用户在下单前先签好名，REST/DB 里存的是 hex 字符串）。
+	DecodeSignature(o.Signature) 就是把这个 hex 字符串解析成上面的 65 字节，并把 V 归一化成 0/1。
+	*/
+	// 2. 把 hex 签名解析成 65 字节 [R||S||V]
 	sig, err := DecodeSignature(o.Signature)
 	if err != nil {
 		return err
 	}
+	// 3. 关键：用 digest（签名之前的摘要） + sig 反推出签名公钥
 	pub, err := crypto.SigToPub(digest.Bytes(), sig)
 	if err != nil {
 		return err
 	}
+	// 4. 公钥 → 以太坊地址（取公钥 keccak 后 20 字节）
 	rec := crypto.PubkeyToAddress(*pub)
+	// 5. 恢复出的地址是否等于订单声称的 signer
 	if !strings.EqualFold(rec.Hex(), o.Signer) {
 		return fmt.Errorf("signer mismatch: recovered=%s expect=%s", rec.Hex(), o.Signer)
 	}

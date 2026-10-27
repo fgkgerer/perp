@@ -15,7 +15,7 @@ type OrderBook struct {
 	Perp    string
 	bids    *bookSide
 	asks    *bookSide
-	entries map[string]*bookEntry
+	entries map[string]*bookEntry //string order.OrderId -> *bookEntry
 	mu      sync.RWMutex
 }
 
@@ -28,6 +28,8 @@ type bookEntry struct {
 	elem   *list.Element // 在 level.queue 中的位置
 }
 
+//levels 是"全部价格档的字典（map，随机查）"，
+// head 是"这些档位里按优劣排好队之后的队头指针（链表头，顺序扫）"。
 type bookSide struct {
 	isBuy  bool
 	book   *OrderBook

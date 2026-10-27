@@ -62,6 +62,7 @@ func main() {
 		defer treasuryWatcher.Stop()
 	}
 
+	//指数价数据流（实时推送）websocket行情
 	coinbaseFeed := listener.NewCoinbaseFeed(ctx)
 	coinbaseFeed.Start()
 	ctx.IndexPrice = coinbaseFeed

@@ -86,7 +86,7 @@ Chainlink:
 # 监听 USDC → UsdcTreasuryAddress 的 Transfer，写入 MySQL deposits / ledger_balances（Redis 记扫描进度）。
 TreasuryDeposit:
   Enabled: true
-  PollIntervalSeconds: 12
+  PollIntervalSeconds: 12 # 监听间隔（秒）
   Confirmations: 1
   InitialLookbackBlocks: 2000
 
