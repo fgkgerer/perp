@@ -114,6 +114,20 @@ library Liquidation {
             // 获取标记价格
             int256 price = SafeCast.toInt256(IPriceSource(params.markPriceSource).getMarkPrice());
 
+            /*
+                        为什么 paper × price + credit 就是盈亏
+            开仓时，多头的 paper 和 credit 是配平的。举两个例子（开仓价 $30,000）：
+
+            做多 1 BTC @ $30k → paper = 1，credit = -30000（欠合约 3 万美元）
+
+            价格涨到 $31k：1 × 31000 + (-30000) = +1000 ✅ 浮盈
+            价格跌到 $29k：1 × 29000 + (-30000) = -1000 ❌ 浮亏
+            做空 1 BTC @ $30k → paper = -1，credit = +30000（合约欠你 3 万美元）
+
+            价格跌到 $29k：(-1) × 29000 + 30000 = +1000 ✅ 空头赚钱
+            价格涨到 $31k：(-1) × 31000 + 30000 = -1000 ❌ 空头亏钱
+            所以 paper × price 是“现在这个仓位的市场价值”，加上 credit（你欠合约/合约欠你的钱），得到的净额就是当前浮盈浮亏。
+             */
             // 仓位价值 = paper * price + credit
             netPositionValue += paperAmount.decimalMul(price) + creditAmount;
             // 敞口 = |paper * price|
